@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Dreamary - 디자이너 등록하기
+{% endblock %}
+
+
+{% block link %}
+{% static 'css/new.css' %}
+{% endblock %}
+    
+
+
+{% block content %}
+        <div class="contaner">
+            <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="inputFile">등록하시는 분을 대표할 수 있는 이미지를 등록해 주세요</label>
+                    <input type="file" class="form-control-file" id="inputFile" name="image" value="" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputName">등록하시는 분의 이름을 적어 주세요</label>
+                    <input type="text" class="form-control" id="inputName" name="name" required>
+                    <small id="Name" class="form-text- text-muted">50자 이내로 작성 바랍니다.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputAddress">등록하시는 분의 활동 지역을 적어 주세요</label>
+                    <input type="text" class="form-control" id="inputAddress" name="address" required>
+                    <small id="Name" class="form-text- text-muted">50자 이내로 작성 바랍니다.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputDescription">당신을 소개해주세요</label>
+                    <textarea class="form-control" id="inputDescription" name="description" cols="40" rows="10" required></textarea>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-secondary btn-lg btn-block" type="submit">등록 완료하기</button>
+                
+            </form>
+        </div>
+{% endblock %}
