@@ -42,9 +42,11 @@
         </p>
     </div>
 
+{% if user.is_authenticated %}
     <a href = "{%url 'my_index' %}"><button>내 자기소개서만 보기</button></a>
     <a href = "{%url 'index' %}"><button>모든 자기소개서만 보기</button></a>
     <br>
+    {%endif %}
 
     {% for jss in all_jss %}
     <a href = "{%url 'detail' jss.id %}">
