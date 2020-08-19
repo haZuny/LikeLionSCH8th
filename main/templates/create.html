@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<!-- html -->
+{% block title_bar %}포토폴리오-생성{% endblock %}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+    <form method = "POST" action = "">
+        <!-- 보안 -->
+        {% csrf_token %}    
+
+        <!-- views.py에서 반환한 모델폼 사용, ad_p는 <p>로 감싼다는 의미 -->
+        {{cardForm.as_p}}
+
+        <input type="submit" value="확인">
+    </form>
+{% endblock %}

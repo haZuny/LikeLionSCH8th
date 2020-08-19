@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+<!-- html -->
+{% block title_bar %}포토폴리오-자세히보기{% endblock %}
+
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+    <img src={{card.img.url}}>
+<h3>프로젝트 제목</h3>
+    <p>{{ card.title }}</p>
+<h3>설명</h3>
+    <p>{{ card.describe }}</p>
+    
+{% endblock %}
