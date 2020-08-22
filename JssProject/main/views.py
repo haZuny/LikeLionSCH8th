@@ -5,10 +5,16 @@ from django.http import Http404
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import login_required
 
+#페이지네이터(페이지를 나눌수 있게 해준다) 임포트
+from django.core.paginator import Paginator
+
 # Create your views here.
 def index(request):
-    all_jss = Jasoseol.objects.all()
-    return render(request, 'index.html', {'all_jss':all_jss})
+    all_jss = Jasoseol.objects.all()    #자소설 전체 목록 불러오기
+    paginator = Paginator(all_jss, 5)   #전체목록에서 5개를 한 페이지로 자르기(객체리스트, 개수)
+    page = request.GET.get('page')      #요청 받은 페이지가 뭔지 알아냄
+    jss_page = paginator.get_page(page) #아까 자른 페이지 중에서 요청받은 페이지에 들어가는 자소서 목록들
+    return render(request, 'index.html', {'all_jss':jss_page})
 
 def my_index(request):
     my_jss = Jasoseol.objects.filter(author=request.user)
