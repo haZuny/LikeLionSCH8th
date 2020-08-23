@@ -28,6 +28,7 @@ DEBUG = bool( os.environ.get('DJANGO_DEBUG', False) )
 ALLOWED_HOSTS = ['*']
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
