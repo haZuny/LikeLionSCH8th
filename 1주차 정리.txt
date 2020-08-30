@@ -1,0 +1,81 @@
+==============================
+==============================
+JSON
+JavaScript Object Notation
+JSON은 문자열!!
+파이썬에서 JSON = 파이썬 문법 -> 문자열 : 직렬화
+    직렬화 과정:
+    import json
+    (문자열을 담을 변수) = json.dumps(문자열로 변경할 변수)
+
+JSON에서 파이썬 = 문자열 -> 파이썬 문법 : 역직렬화
+    역직렬화 과정:
+    import json
+    (저장할 변수이름) = json.loads(문자열변수)
+==============================
+==============================
+Http Method in Django rest framework
+GET: 정보를 가져옴
+POST: 생성
+PUT: 수정(전부)
+DELETE: 삭제
+PATCH: 수정(일부)
+OPTION: (메소드 종류 확인)
+==============================
+==============================
+Class CRUD
+
+- urls.py에서 할 것
+path의 두번째 인자에 (클래스이름.as_view())
+ex) path('home', views.home.as_view(), name="home")
+------------------------------
+-views.py에서 할 것
+1.import
+1-1. from django.views.generic.list import ListView: 데이터 목록을 보여줌
+1-2. from django.views.generic.detail import DetailView: 데이터 디테일을 보여줌
+1-3. from django.views.generic.edit import CreateView, UpdateView, DeleteView: 데이터 추가, 수정, 삭제 기능 구현
+1-4. from django.urls import reverse_lazy: url 함수 실행
+
+2. 클래스 작성
+2-1. ListView
+class BlogView(ListView):
+    model = ClassBlog	#어떤 모델 목록을 읽을지
+
+2-2. CreateView
+class BlogCreate(CreateView):
+    model = ClassBlog	#어떤 모델을 만들지
+    fields = ['~~', '~~']	#어떤 필드를 작성할지
+    success_url = reverse_lazy('list')	#성공 후 어떤 url로 이동할지
+
+2-3. DetailView
+class BlogDetail(DetailView):
+    model = ClassBlog
+
+2-4. UpdateView
+class BlogUpdate(UpdateView):
+    model = ClassBlog
+    fields = ['~~', '~~']
+    success_url = reverse_lazy('list')
+
+2-5. DeleteView
+class BlogDelete(DeleteView):
+    model = ClassBlog
+    success_url = reverse_lazy('list')
+
+3. 템플릿 디폴트 이름을 바꾸고 싶은 경우
+    (클래스 안에다가)template_name = '~~'
+
+4. 템플릿에 넘어갈 object 이름을 바꾸고 싶은 경우(List, Detail)
+    (클래스 안에다가)context_object_name = '~~'
+------------------------------
+- 템플릿
+1. html의 이름
+1-1. ListView: (소문자모델)_list.html
+1-2. CreateView: (소문자모델)_form.html	#html은 모델 form을 가지고 있어야함
+1-3. DetailView: (소문자모델)_detail.html
+1-4. UpdateView: (소문자모델)_form.html	#html은 모델 form을 가지고 있어야함
+1-5. DeleteView: (소문자모델)_confirm_delete.html	#삭제할지 물어봄
+
+2. html세부
+2-1: ListView의 경우 모든 모델객체의 리스트가 저장되어있는 디폴트변수: object_list
+2-2: DetailView의 경우 자세히 볼 객체가 저장되어있는 디폴트변수: object
