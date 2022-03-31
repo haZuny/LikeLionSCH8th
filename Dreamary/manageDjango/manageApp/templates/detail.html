@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Dreamary - 세부 정보
+{% endblock %}
+
+
+{% block link %}
+{% static 'css/detail.css' %}
+{% endblock %}
+    
+
+
+{% block content %}
+        <img src="{{ designer.image.url }}" width="300px" height="400px"/>
+        <br/>
+        <h4>이름: '{{designer.name}}' 헤어 디자이너</h4>
+        <br/>
+        <p>주소: '{{designer.address}}' 에서 활동 중</p>
+        <br/>
+        <p>{{designer.description}}</p>
+        <br/>
+        <div class="btn-group">
+                <a href="{% url 'update' designer.id %}" class="btn btn-sm btn-outline-secondary"> 정보 수정</a>
+                <a href="{% url 'delete' designer.id %}" class="btn btn-sm btn-outline-danger"> 정보 삭제</a>
+        </div>
+{% endblock %}
+
+
+            
